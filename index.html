@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>消防知识安全手册</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --fire-red: #C8102E;
+    --fire-orange: #FF6B35;
+    --dark: #1A1A2E;
+    --light: #F8F9FA;
+    --white: #FFFFFF;
+    --gray: #6C757D;
+    --light-gray: #E9ECEF;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--light);
+    color: var(--dark);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, #C8102E 0%, #8B0000 50%, #1A1A2E 100%);
+    color: var(--white);
+    padding: 60px 24px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255,107,53,0.3) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero p {
+    font-size: 15px;
+    opacity: 0.85;
+    max-width: 320px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Nav */
+  .nav {
+    background: var(--white);
+    padding: 16px 24px;
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-bottom: 1px solid var(--light-gray);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-item {
+    flex-shrink: 0;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    color: var(--gray);
+    background: var(--light);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .nav-item.active, .nav-item:hover {
+    background: var(--fire-red);
+    color: var(--white);
+  }
+
+  /* Container */
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 24px 16px 60px;
+  }
+
+  /* Section */
+  .section {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 28px 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .section-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-icon.red { background: #FFE5E8; }
+  .section-icon.orange { background: #FFF0E6; }
+  .section-icon.blue { background: #E3F2FD; }
+  .section-icon.yellow { background: #FFF8E1; }
+  .section-icon svg { width: 24px; height: 24px; }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--dark);
+  }
+  .section-subtitle {
+    font-size: 13px;
+    color: var(--gray);
+    margin-top: 2px;
+  }
+
+  /* List items */
+  .tip-list {
+    list-style: none;
+  }
+  .tip-list li {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--light-gray);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .tip-list li:last-child { border-bottom: none; }
+  .tip-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--fire-red);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .tip-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .tip-content p {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  /* Steps */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .step-card {
+    background: var(--light);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+  .step-char {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--fire-red);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .step-name {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .step-desc {
+    font-size: 12px;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
+  /* Warning box */
+  .warning-box {
+    background: #FFF8E1;
+    border-left: 4px solid #FFB300;
+    border-radius: 0 12px 12px 0;
+    padding: 16px;
+    margin-top: 16px;
+  }
+  .warning-box h4 {
+    font-size: 14px;
+    color: #E65100;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .warning-box p {
+    font-size: 13px;
+    color: #6D4C00;
+    line-height: 1.6;
+  }
+
+  /* Mistakes */
+  .mistake-item {
+    display: flex;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--light-gray);
+  }
+  .mistake-item:last-child { border-bottom: none; }
+  .mistake-mark {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .mistake-mark.wrong { background: #FFE5E8; color: var(--fire-red); }
+  .mistake-mark.right { background: #E8F5E9; color: #2E7D32; }
+  .mistake-text h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .mistake-text p {
+    font-size: 13px;
+    color: var(--gray);
+  }
+
+  /* Emergency call */
+  .emergency-card {
+    background: linear-gradient(135deg, #C8102E, #FF6B35);
+    color: var(--white);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+  }
+  .emergency-number {
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    margin: 8px 0;
+  }
+  .emergency-desc {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 16px;
+  }
+  .emergency-tips {
+    text-align: left;
+    background: rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 16px;
+    backdrop-filter: blur(10px);
+  }
+  .emergency-tips h5 {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .emergency-tips ul {
+    list-style: none;
+  }
+  .emergency-tips li {
+    font-size: 13px;
+    padding: 4px 0;
+    padding-left: 16px;
+    position: relative;
+  }
+  .emergency-tips li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: var(--gray);
+  }
+
+  /* Responsive */
+  @media (min-width: 768px) {
+    .hero h1 { font-size: 44px; }
+    .hero p { font-size: 17px; max-width: 480px; }
+    .steps { grid-template-columns: repeat(4, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="hero-badge">消防安全 · 生命至上</div>
+  <h1>消防知识安全手册</h1>
+  <p>掌握火场逃生技能，关键时刻能救命。请认真阅读，转发给身边的人。</p>
+</header>
+
+<!-- Nav -->
+<nav class="nav">
+  <a class="nav-item active" href="#prevention">火灾预防</a>
+  <a class="nav-item" href="#extinguisher">灭火器使用</a>
+  <a class="nav-item" href="#escape">逃生自救</a>
+  <a class="nav-item" href="#call">报警求救</a>
+  <a class="nav-item" href="#myth">常见误区</a>
+</nav>
+
+<div class="container">
+
+  <!-- 火灾预防 -->
+  <section class="section" id="prevention">
+    <div class="section-header">
+      <div class="section-icon red">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#C8102E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22c5.523 0 10-4.477 10-10 0-1.49-.324-2.9-.9-4.17a8 8 0 0 1-2.93-2.93A9.96 9.96 0 0 0 12 2c-.685 0-1.356.069-2.004.2a10 10 0 0 1-3.463 5.8A9.96 9.96 0 0 0 2 12c0 5.523 4.477 10 10 10z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">火灾预防</div>
+        <div class="section-subtitle">防患于未然，从日常细节做起</div>
+      </div>
+    </div>
+    <ul class="tip-list">
+      <li>
+        <div class="tip-num">1</div>
+        <div class="tip-content">
+          <h4>不乱接乱拉电线</h4>
+          <p>不超负荷用电，不使用劣质插线板，电器用完及时拔掉插头。</p>
+        </div>
+      </li>
+      <li>
+        <div class="tip-num">2</div>
+        <div class="tip-content">
+          <h4>厨房用火不离人</h4>
+          <p>炒菜时人不要离开灶台，油锅起火切勿用水浇，应盖锅盖灭火。</p>
+        </div>
+      </li>
+      <li>
+        <div class="tip-num">3</div>
+        <div class="tip-content">
+          <h4>楼道保持畅通</h4>
+          <p>不在楼道、安全出口堆放杂物或停放电动车，确保逃生通道随时可用。</p>
+        </div>
+      </li>
+      <li>
+        <div class="tip-num">4</div>
+        <div class="tip-content">
+          <h4>电动车安全充电</h4>
+          <p>不进楼入户充电，不在室内为电动车电池充电，使用原装充电器。</p>
+        </div>
+      </li>
+      <li>
+        <div class="tip-num">5</div>
+        <div class="tip-content">
+          <h4>定期检查消防设施</h4>
+          <p>熟悉灭火器、消火栓位置，发现过期或损坏及时报修更换。</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 灭火器使用 -->
+  <section class="section" id="extinguisher">
+    <div class="section-header">
+      <div class="section-icon orange">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L4 7v6c0 5 3.5 9.5 8 11 4.5-1.5 8-6 8-11V7l-8-5z"/>
+          <path d="M9 12l2 2 4-4"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">灭火器使用方法</div>
+        <div class="section-subtitle">提拔握压 · 四步搞定</div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-char">提</div>
+        <div class="step-name">提起灭火器</div>
+        <div class="step-desc">手提灭火器提把，快速赶到火场，距火源约2-3米处停下</div>
+      </div>
+      <div class="step-card">
+        <div class="step-char">拔</div>
+        <div class="step-name">拔掉保险销</div>
+        <div class="step-desc">拔掉灭火器上的保险销，解除使用锁定</div>
+      </div>
+      <div class="step-card">
+        <div class="step-char">握</div>
+        <div class="step-name">握住喷管</div>
+        <div class="step-desc">一手握住喷管前端，另一手握住压把，对准火焰根部</div>
+      </div>
+      <div class="step-card">
+        <div class="step-char">压</div>
+        <div class="step-name">压下把手喷射</div>
+        <div class="step-desc">用力按下压把，左右扫射，由近及远，直至火焰完全熄灭</div>
+      </div>
+    </div>
+    <div class="warning-box">
+      <h4>重要提醒</h4>
+      <p>站在上风向喷射，避免烟雾和火焰反扑。电器火灾先断电再灭火，油类火灾切勿用水扑救。灭火器有效期一般为5年，压力指针须在绿区。</p>
+    </div>
+  </section>
+
+  <!-- 逃生自救 -->
+  <section class="section" id="escape">
+    <div class="section-header">
+      <div class="section-icon blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">火场逃生自救</div>
+        <div class="section-subtitle">沉着冷静，科学逃生</div>
+      </div>
+    </div>
+    <ul class="tip-list">
+      <li>
+        <div class="tip-num">1</div>
+        <div class="tip-content">
+          <h4>湿毛巾捂口鼻</h4>
+          <p>用湿毛巾或衣物捂住口鼻，过滤有毒烟雾，过滤层数越多效果越好。</p>
+        </div>
+      </li>
+      <li>
+        <div class="tip-num">2</div>
+        <div class="tip-content">
+          <h4>低姿匍匐前进</h4>
+          <p>浓烟中有害物质上浮，贴近地面30厘米处残留新鲜空气，弯腰或匍匐撤离。</p>
+        </div>
+      </li>
+      <li>
+        <div class="tip-num">3</div>
+        <div class="tip-content">
+          <h4>沿安全出口指示撤离</h4>
+          <p>认准"安全出口"指示灯方向逃生，不乘坐电梯，走楼梯。</p>
+        </div>
+      </li>
+      <li>
+        <div class="tip-num">4</div>
+        <div class="tip-content">
+          <h4>房门先摸再开</h4>
+          <p>开门前先用手背触摸门板，若发烫说明门外已有火势，应退回室内封堵门缝。</p>
+        </div>
+      </li>
+      <li>
+        <div class="tip-num">5</div>
+        <div class="tip-content">
+          <h4>无路可退时自救</h4>
+          <p>关紧迎火门窗，用湿布塞堵门缝，不断泼水降温，到窗口挥舞鲜艳衣物呼救。</p>
+        </div>
+      </li>
+    </ul>
+    <div class="warning-box">
+      <h4>特别注意</h4>
+      <p>身上着火千万不要奔跑！就地打滚压灭火苗，或用厚重衣物覆盖灭火。高层火灾切勿盲目跳楼，可利用排水管、避雷针等设施缓慢下滑。</p>
+    </div>
+  </section>
+
+  <!-- 报警求救 -->
+  <section class="section" id="call">
+    <div class="emergency-card">
+      <div style="font-size: 14px; opacity: 0.9;">火警电话</div>
+      <div class="emergency-number">119</div>
+      <div class="emergency-desc">发现火情立即拨打，早一分钟报警，多一分生的希望</div>
+      <div class="emergency-tips">
+        <h5>报警时说清四件事</h5>
+        <ul>
+          <li>详细地址：区、街道、小区、楼栋、门牌号</li>
+          <li>起火物：什么东西着火，火势大小</li>
+          <li>人员情况：有无人员被困，有无爆炸危险品</li>
+          <li>联系方式：留下姓名和电话，便于随时联系</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 常见误区 -->
+  <section class="section" id="myth">
+    <div class="section-header">
+      <div class="section-icon yellow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F57C00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">常见消防误区</div>
+        <div class="section-subtitle">这些做法可能害了你</div>
+      </div>
+    </div>
+    <div class="mistake-item">
+      <div class="mistake-mark wrong">X</div>
+      <div class="mistake-text">
+        <h4>油锅起火用水浇</h4>
+        <p>油比水轻会浮在水面扩散火势。正确做法：盖锅盖或用灭火毯覆盖，关闭燃气阀门。</p>
+      </div>
+    </div>
+    <div class="mistake-item">
+      <div class="mistake-mark wrong">X</div>
+      <div class="mistake-text">
+        <h4>乘坐电梯逃生</h4>
+        <p>火灾时电梯可能断电停运，且电梯井会形成"烟囱效应"灌入浓烟。正确做法：走安全楼梯。</p>
+      </div>
+    </div>
+    <div class="mistake-item">
+      <div class="mistake-mark wrong">X</div>
+      <div class="mistake-text">
+        <h4>贪恋财物返回火场</h4>
+        <p>生命永远第一位。返回火场取物的时间足以让火势完全失控，造成无法挽回的后果。</p>
+      </div>
+    </div>
+    <div class="mistake-item">
+      <div class="mistake-mark wrong">X</div>
+      <div class="mistake-text">
+        <h4>觉得"小火自己能灭"</h4>
+        <p>火势发展极快，30秒内即可从初起阶段发展为猛烈燃烧。发现火情应立即报警并撤离。</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  消防知识安全手册 · 人人讲安全 个个会应急<br>
+  请将此手册分享给更多人，守护生命安全
+</footer>
+
+<script>
+  // Smooth scroll for nav
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
